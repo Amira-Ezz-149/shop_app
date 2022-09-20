@@ -3,9 +3,9 @@ class HomeModel {
 
   HomeData? data;
 
-  HomeModel.fromjsom(Map<String, dynamic> json) {
+  HomeModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
-    data = HomeData.fromjsom(json['data']);
+    data = HomeData.fromJson(json['data']);
   }
 }
 
@@ -13,13 +13,13 @@ class HomeData {
   List<BannersData> banners = [];
   List<ProductModel> products = [];
 
-  HomeData.fromjsom(Map<String, dynamic> json) {
+  HomeData.fromJson(Map<String, dynamic> json) {
     json['banners'].forEach((element) {
-      banners.add(BannersData.fromjsom(element));
+      banners.add(BannersData.fromJson(element));
     });
 
     json['products'].forEach((element) {
-      products.add(ProductModel.fromjsom(element));
+      products.add(ProductModel.fromJson(element));
     });
   }
 }
@@ -29,7 +29,7 @@ class BannersData {
 
   String? image;
 
-  BannersData.fromjsom(Map<String, dynamic> json) {
+  BannersData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     image = json['image'];
   }
@@ -52,7 +52,7 @@ class ProductModel {
 
   late bool Incart;
 
-  ProductModel.fromjsom(Map<String, dynamic> json) {
+  ProductModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     price = json['price'];
     old_price = json['old_price'];

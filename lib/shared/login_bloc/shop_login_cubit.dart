@@ -7,23 +7,23 @@ import 'package:sssssssshop_app/network/end_points.dart';
 import 'package:sssssssshop_app/shared/login_bloc/states.dart';
 import 'package:sssssssshop_app/shared/network/remote/dio_helper.dart';
 
-class ShopAppLogincubit extends Cubit<ShopLoginStates> {
-  ShopAppLogincubit() : super(ShopLoginInitialStatus());
-  ShopLoginModel? UserModel;
+class ShopLoginCubit extends Cubit<ShopLoginStates> {
+  ShopLoginCubit() : super(ShopLoginInitialStatus());
+  ShopLoginModel? userModel;
 
-  static ShopAppLogincubit get(context) => BlocProvider.of(context);
+  static ShopLoginCubit get(context) => BlocProvider.of(context);
 
-  void UserLogin({
+  void userLogin({
     required String email,
     required String password,
   }) {
     emit(ShopLoginLoadingState());
-    DioHelper.PostData(url: LOGIN, data: {
+    DioHelper.postData(url: LOGIN, data: {
       'email': email,
       'password': password,
     }).then((value) {
-      UserModel = ShopLoginModel.formjson(value.data);
-      emit(ShopLoginSuccessState(UserModel!));
+      userModel = ShopLoginModel.formjson(value.data);
+      emit(ShopLoginSuccessState(userModel!));
     }).catchError((error) {
       print('  الايرور هنا  .........');
       print(error);
@@ -35,7 +35,7 @@ class ShopAppLogincubit extends Cubit<ShopLoginStates> {
 
   bool isoscureShow = true;
 
-  void eyeisShow() {
+  void changePasswordVisibility() {
     iconData = isoscureShow
         ? Icons.visibility_off_outlined
         : Icons.visibility_outlined;
