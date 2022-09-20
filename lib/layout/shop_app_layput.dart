@@ -21,11 +21,7 @@ class ShopLayout extends StatelessWidget {
             titleSpacing: 10,
             title: Row(
               children: const [
-                Image(
-                  image: AssetImage('assets/images/image4.png'),
-                  width: 40,
-                  height: 40,
-                ),
+               FlutterLogo(),
                 Text(
                   'Salla',
                   style: TextStyle(color: Colors.black),

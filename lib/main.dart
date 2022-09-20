@@ -1,19 +1,24 @@
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sssssssshop_app/layout/shop_app_layput.dart';
+import 'package:sssssssshop_app/models/categories_model.dart';
 import 'package:sssssssshop_app/modules/login/login.dart';
 import 'package:sssssssshop_app/modules/on_boarding/on_boarding_screen.dart';
 import 'package:sssssssshop_app/shared/app_bloc/shop_app_cubit.dart';
 import 'package:sssssssshop_app/shared/constants/constants.dart';
 import 'package:sssssssshop_app/shared/login_bloc/bloc_observer.dart';
-import 'package:sssssssshop_app/shared/login_bloc/cubit.dart';
+import 'package:sssssssshop_app/shared/login_bloc/shop_login_cubit.dart';
 import 'package:sssssssshop_app/shared/network/remote/dio_helper.dart';
 
 import 'shared/network/local/cache_helper.dart';
 
 
 Future<void> main() async {
+  HttpOverrides.global = MyHttpOverrides();
+
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
   DioHelper.init();
@@ -35,6 +40,16 @@ Future<void> main() async {
 
   runApp(MyApp(start));
 }
+
+class MyHttpOverrides extends HttpOverrides{
+  @override
+  HttpClient createHttpClient(SecurityContext? context){
+    return super.createHttpClient(context)
+      ..badCertificateCallback = (X509Certificate cert, String host, int port)=> true;
+  }
+}
+
+
 // BlocOverrides.runZoned(
 // () {
 // // Use cubits...
@@ -52,7 +67,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => ShopAppLogincubit()),
+        BlocProvider(create: (context) => ShopLoginCubit()),
         BlocProvider(
             create: (context) => ShopCubit()
               ..getHomeData()..getCategories()),

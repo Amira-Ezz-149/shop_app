@@ -20,13 +20,14 @@ class ShopCubit extends Cubit<ShopStates> {
 
   //change Bottom nav bar
   int currentIndex = 0;
-  Color? color = Colors.grey[300];
+  // Color? color = Colors.grey[300];
 
   void changeBottom(int index) {
     currentIndex = index;
-    emit(ChangeTabs());
+    emit(ShopChangeBottomNavState());
   }
 
+/*
   bool? Icontogel;
 
   // Bottom nav bar Icons theme
@@ -52,6 +53,7 @@ class ShopCubit extends Cubit<ShopStates> {
       color: Colors.black,
     ),
   ];
+*/
 
   // App Screens
   List<Widget> Screens = [
@@ -61,70 +63,54 @@ class ShopCubit extends Cubit<ShopStates> {
     SettingsScreen(),
   ];
 
-  // method get home Data
-  IconData? FavIcon;
-  Map<int, bool> favorite = {};
-  Map<int, bool> InCart = {};
+  // // method get home Data
+  // IconData? FavIcon;
+  // Map<int, bool> favorite = {};
+  // Map<int, bool> InCart = {};
 
 
   HomeModel? homeModel;
 
-  void getHomeData() {
-    emit(ShopLoadingState());
-    DioHelper.getdata(url: HOME, Token: token).then((value) {
-      emit(ShopSuccessState());
-      homeModel = HomeModel.fromjsom(value.data);
-      homeModel!.data!.products.forEach((element) {
-        favorite.addAll({
-          element.id: element.infavorites,
-        });
-      });
-      homeModel!.data!.products.forEach((element) {
-        InCart.addAll({
-          element.id: element.Incart,
-        });
-      });
-      print("Cart data ${InCart.toString()}");
-      print("Favourite data ${favorite.toString()}");
-      print(homeModel!.data!.banners[0]);
-      print(value.toString());
+  void getHomeData()
+  {
+    emit(ShopLoadingHomeDataState());
+    DioHelper.getData(
+      url: HOME,
+      token: token,
+    ).then((value)
+    {
+      homeModel = HomeModel.fromJson(value.data);
+      print('===== *************************** ======');
+      print('from home model the value is ${value.data}');
+
+      emit(ShopSuccessHomeDataState());
     }).catchError((error) {
-      print('errorrrrrrrr');
-      print(error.toString());
-      emit(ShopErrorState());
+      emit(ShopErrorHomeDataState());
     });
   }
 
-
-
+///=============================== categories model ==========================
+///============================================================================
   CategoriesModel? categoriesModel;
 
-  void getCategories() {
-    DioHelper.getdata(
-        url: GET_CATEGORIES,
-        Token: token,
-    ).then((value) {
+  void getCategories()
+  {
+    DioHelper.getData(
+      url: GET_CATEGORIES,
+      // token: token,
+    ).then((value)
+    {
       categoriesModel = CategoriesModel.fromJson(value.data);
+      print('===== ********************************** ======');
+      print('from categories model the value is ${value.toString()}');
       emit(ShopSuccessCategoriesState());
-      // homeModel!.data!.products.forEach((element) {
-      //   favorite.addAll({
-      //     element.id: element.infavorites,
-      //   });
-      // });
-      // homeModel!.data!.products.forEach((element) {
-      //   InCart.addAll({
-      //     element.id: element.Incart,
-      //   });
-      // });
-      // print("Cart data ${InCart.toString()}");
-      // print("Favourite data ${favorite.toString()}");
-      // print(homeModel!.data!.banners[0]);
-      // print(value.toString());
     }).catchError((error) {
-      // print('errorrrrrrrr');
       print(error.toString());
       emit(ShopErrorCategoriesState());
     });
   }
+
+
+
 
 }

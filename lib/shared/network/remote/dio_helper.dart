@@ -14,49 +14,49 @@ class DioHelper {
     );
   }
 
-  static Future<Response> getdata({
+  static Future<Response> getData({
     required String url,
     Map<String, dynamic>? query,
-    String Lang = 'en' ,
-    String? Token ,
+    String lang = 'en' ,
+    String? token ,
   }) async {
     dio.options.headers =
     {
       'Content-Type':'application/json',
-      'lang':Lang,
-      'Authorization':'$Token',
+      'lang':lang,
+      'Authorization':'$token',
     };
     return await dio.get(url, queryParameters: query);
   }
 
-  static Future<Response> PostData({
+  static Future<Response> postData({
     required String url,
     Map<String, dynamic>? query,
     required Map<String, dynamic> data,
-    String Lang = 'en' ,
-    String? Token,
+    String lang = 'en' ,
+    String? token,
   }) async {
     dio.options.headers =
     {
       'Content-Type':'application/json',
-      'lang':Lang,
-      'Authorization': '$Token',
+      'lang':lang,
+      'Authorization': '$token',
     };
     return await dio.post(url, queryParameters: query ,data: data);
   }
 
-  static Future<Response> PutData({
+  static Future<Response> putData({
     required String url,
     Map<String, dynamic>? query,
     required Map<String, dynamic> data,
-    String Lang = 'en' ,
-    String? Token,
+    String lang = 'en' ,
+    String? token,
   }) async {
     dio.options.headers =
     {
       'Content-Type':'application/json',
-      'lang':Lang,
-      'Authorization': '$Token',
+      'lang':lang,
+      'Authorization': '$token',
     };
     return await dio.put(url, queryParameters: query ,data: data);
   }

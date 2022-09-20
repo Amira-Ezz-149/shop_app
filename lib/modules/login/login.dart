@@ -6,8 +6,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:sssssssshop_app/layout/shop_app_layput.dart';
 import 'package:sssssssshop_app/shared/constants/components.dart';
 import 'package:sssssssshop_app/shared/constants/constants.dart';
-import 'package:sssssssshop_app/shared/login_bloc/cubit.dart';
-import 'package:sssssssshop_app/shared/login_bloc/states.dart';
+import 'package:sssssssshop_app/shared/login_bloc/shop_login_cubit.dart';
+import 'package:sssssssshop_app/shared/login_bloc/shop_login_states.dart';
 import 'package:sssssssshop_app/shared/network/local/cache_helper.dart';
 
 
@@ -18,7 +18,7 @@ class ShopLoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<ShopAppLogincubit, ShopLoginStates>(
+    return BlocConsumer<ShopLoginCubit, ShopLoginStates>(
       listener: (BuildContext context, state) {
         if (state is ShopLoginSuccessState) {
           if (state.loginModel.status == true) {
@@ -49,17 +49,13 @@ class ShopLoginScreen extends StatelessWidget {
         }
       },
       builder: (BuildContext context, Object? state) {
-        var cubit = ShopAppLogincubit.get(context);
+        var cubit = ShopLoginCubit.get(context);
         return Scaffold(
           appBar: AppBar(
             titleSpacing: 10,
             title: Row(
               children: const [
-                Image(
-                  image: AssetImage('assets/images/image4.png'),
-                  width: 40,
-                  height: 40,
-                ),
+               FlutterLogo(),
                 Text(
                   'Salla',
                   style: TextStyle(color: Colors.black),
@@ -77,11 +73,7 @@ class ShopLoginScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Image(
-                    image: AssetImage('assets/images/image4.png'),
-                    width: 150,
-                    height: 150,
-                  ),
+                  const Center(child:  FlutterLogo(size: 200.0)),
                   Center(
                     child: Form(
                       key: Formkey,
@@ -131,7 +123,7 @@ class ShopLoginScreen extends StatelessWidget {
                             sufix: cubit.iconData,
                             obscureText: cubit.isoscureShow,
                             suffixPressed: () {
-                              cubit.eyeisShow();
+                              cubit.changePasswordVisibility();
                             },
                             validator: (value) {
                               if (value!.isEmpty) {
@@ -144,7 +136,7 @@ class ShopLoginScreen extends StatelessWidget {
                             },
                             onSubmit: (value) {
                               if (Formkey.currentState!.validate()) {
-                                cubit.UserLogin(
+                                cubit.userLogin(
                                     email: emailController.text,
                                     password: PasswordConerolar.text);
                               }
@@ -161,7 +153,7 @@ class ShopLoginScreen extends StatelessWidget {
                               color: Colors.deepOrange,
                               onpressed: () {
                                 if (Formkey.currentState!.validate()) {
-                                  cubit.UserLogin(
+                                  cubit.userLogin(
                                       email: emailController.text,
                                       password: PasswordConerolar.text);
                                 }

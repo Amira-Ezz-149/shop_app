@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sssssssshop_app/models/categories_model.dart';
 import 'package:sssssssshop_app/models/shop_app_model.dart';
 import 'package:sssssssshop_app/shared/app_bloc/shop_app_cubit.dart';
 import 'package:sssssssshop_app/shared/app_bloc/shop_app_states.dart';
@@ -17,10 +18,10 @@ class ProductsScreen extends StatelessWidget {
       builder: (context, state) {
         ShopCubit cubit = ShopCubit.get(context);
         return ConditionalBuilder(
-            condition: cubit.homeModel != null,
-            builder: (context) => builderWidget(cubit.homeModel),
+            condition: cubit.homeModel != null || cubit.categoriesModel != null ,
+            builder: (context) => builderWidget(cubit.homeModel, cubit.categoriesModel),
             fallback: (context) =>
-                Center(child: const CircularProgressIndicator()));
+               const Center(child: CircularProgressIndicator()));
       },
     );
   }
@@ -29,8 +30,8 @@ class ProductsScreen extends StatelessWidget {
   
 
   
-  Widget builderWidget(HomeModel? model) => SingleChildScrollView(
-    physics: BouncingScrollPhysics(),
+  Widget builderWidget(HomeModel? model,CategoriesModel? categoriesModel) => SingleChildScrollView(
+    physics: const BouncingScrollPhysics(),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -60,17 +61,19 @@ class ProductsScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Categories', style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.w600),),
+                    const Text('Categories', style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.w600),),
                     const SizedBox(height: 10.0),
 
                     SizedBox(
                         height: 100.0,
                         child: ListView.separated(
+                            physics: const BouncingScrollPhysics(),
                             scrollDirection: Axis.horizontal,
-                            itemBuilder: (context, index) => buildCategoryItem(), separatorBuilder: (context, index)=> SizedBox(width: 10.0), itemCount: 10)),
+                            itemBuilder: (context, index) => buildCategoryItem(categoriesModel!.data!.data![index]),
+                            separatorBuilder: (context, index)=> const SizedBox(width: 10.0), itemCount: categoriesModel!.data!.data!.length)),
                     const SizedBox(height: 10.0),
 
-                    Text('New Products', style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.w600),),
+                   const Text('New Products', style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.w600),),
 
                   ],
                 ),
@@ -81,7 +84,7 @@ class ProductsScreen extends StatelessWidget {
               /// te Grid view doesn't change in any phone
               child: GridView.count(
                 shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 crossAxisCount: 2,
 
                 /// control top and bottom
@@ -105,11 +108,11 @@ class ProductsScreen extends StatelessWidget {
 
 
   
-  buildCategoryItem(){
+  buildCategoryItem(DataModel? dataModel){
     return Stack(
       alignment: AlignmentDirectional.bottomCenter,
       children: [
-        Image(image: NetworkImage('https://student.valuxapps.com/storage/uploads/categories/16301438353uCFh.29118.jpg'),
+        Image(image: NetworkImage(dataModel!.image!),
           height: 100.0,
           width: 100.0,
           fit: BoxFit.cover,
@@ -117,11 +120,11 @@ class ProductsScreen extends StatelessWidget {
         Container(
           width: 100.0,
           color: black.withOpacity(0.8),
-          child: Text('Electronics',
+          child: Text(dataModel.name!,
             textAlign: TextAlign.center,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
-            style: TextStyle(color: white),),)
+            style: const TextStyle(color: white),),)
       ],
     );
   }
@@ -142,7 +145,7 @@ class ProductsScreen extends StatelessWidget {
               ),
 
               if(model.discount != 0) Container(
-                padding: EdgeInsets.symmetric(horizontal: 5.0),
+                padding: const EdgeInsets.symmetric(horizontal: 5.0),
                 color: red,
                 child: const Text('DISCOUNT',  style: TextStyle(color: white, fontSize: 10.0),),
               )
@@ -165,15 +168,14 @@ class ProductsScreen extends StatelessWidget {
                       style: const TextStyle(fontSize: 12.0, color: defaultColor),
                     ),
                     const SizedBox(width: 5.0,),
-                    if(model.discount != 0) Text('${model.old_price!}',
+                    if(model.discount != 0) Text('${model.oldPrice!}',
                       overflow: TextOverflow.ellipsis,
                       maxLines: 2,
                       style: const TextStyle(fontSize: 10.0, color: grey, decoration: TextDecoration.lineThrough ),
                     ),
                     const Spacer(),
                     IconButton(
-                       onPressed: (){}, icon: Icon(
-
+                       onPressed: (){}, icon: const Icon(
                       Icons.favorite_border, size: 20.0,))
                   ],
                 ),

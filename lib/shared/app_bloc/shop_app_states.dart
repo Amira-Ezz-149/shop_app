@@ -6,13 +6,11 @@ class ShopInitialState extends ShopStates {}
 
 class EditPressedState extends ShopStates {}
 
-class ShopLoadingState extends ShopStates {}
+class ShopLoadingHomeDataState extends ShopStates {}
+class ShopSuccessHomeDataState extends ShopStates {}
+class ShopErrorHomeDataState extends ShopStates {}
 
-class ShopSuccessState extends ShopStates {}
-
-class ShopErrorState extends ShopStates {}
-////////////////////////////////////
-class ChangeTabs extends ShopStates {}
+class ShopChangeBottomNavState extends ShopStates {}
 
 
 
