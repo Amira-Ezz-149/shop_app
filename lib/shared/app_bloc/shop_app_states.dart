@@ -53,4 +53,15 @@ class ShopErrorUserDataState extends ShopStates {}
 class ShopLoadingUserDataState extends ShopStates {}
 
 
+///===============  update profile [put] =========================
+class ShopSuccessUpdateUserState extends ShopStates {
+   ShopLoginAndSettingsModel? loginModel;
+
+   ShopSuccessUpdateUserState(this.loginModel);
+}
+
+class ShopErrorUpdateUserState extends ShopStates {}
+class ShopLoadingUpdateUserState extends ShopStates {}
+
+
 
