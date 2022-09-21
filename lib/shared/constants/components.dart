@@ -8,7 +8,7 @@ void PushToNextScreen(context, wight) => Navigator.push(
   MaterialPageRoute(builder: (context) => wight),
 );
 
-void showToast(msg) {
+void showToast({msg}) {
   Fluttertoast.showToast(
       msg: msg,
       toastLength: Toast.LENGTH_LONG,

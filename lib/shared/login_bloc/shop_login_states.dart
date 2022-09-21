@@ -10,7 +10,7 @@ class ShopLoginInitialStatus extends ShopLoginStates {}
 class ShopLoginLoadingState extends ShopLoginStates {}
 
 class ShopLoginSuccessState extends ShopLoginStates {
-  final ShopLoginModel loginModel;
+  final ShopLoginAndSettingsModel loginModel;
 
   ShopLoginSuccessState(this.loginModel);
 }

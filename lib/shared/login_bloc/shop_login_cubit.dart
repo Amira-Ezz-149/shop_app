@@ -3,13 +3,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sssssssshop_app/models/login_model.dart';
-import 'package:sssssssshop_app/network/end_points.dart';
+import 'package:sssssssshop_app/shared/network/end_points.dart';
 import 'package:sssssssshop_app/shared/login_bloc/shop_login_states.dart';
 import 'package:sssssssshop_app/shared/network/remote/dio_helper.dart';
 
 class ShopLoginCubit extends Cubit<ShopLoginStates> {
   ShopLoginCubit() : super(ShopLoginInitialStatus());
-  ShopLoginModel? userModel;
+  ShopLoginAndSettingsModel? userModel;
 
   static ShopLoginCubit get(context) => BlocProvider.of(context);
 
@@ -22,7 +22,7 @@ class ShopLoginCubit extends Cubit<ShopLoginStates> {
       'email': email,
       'password': password,
     }).then((value) {
-      userModel = ShopLoginModel.formjson(value.data);
+      userModel = ShopLoginAndSettingsModel.fromJson(value.data);
       emit(ShopLoginSuccessState(userModel!));
     }).catchError((error) {
       print('  الايرور هنا  .........');

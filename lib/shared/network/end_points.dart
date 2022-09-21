@@ -4,7 +4,10 @@ const HOME = 'home';
 
 const GET_CATEGORIES = 'categories';
 
-const SETTING = 'profile';
+const FAVORITES = 'favorites';
+
+
+const PROFILE = 'profile';
 
 const REGISTER = 'register';
 
@@ -12,7 +15,6 @@ const update_profile = 'update-profile';
 
 const productssearch = 'products/search';
 
-const FAVOURITE = 'favorites';
 
 const PRODUCT = 'products/';
 

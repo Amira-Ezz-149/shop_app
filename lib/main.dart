@@ -26,6 +26,7 @@ Future<void> main() async {
   dynamic onBoardingFinish = false;
   onBoardingFinish = CacheHelper.getData('ShowOnBoard');
   token = CacheHelper.getData('token');
+  /// token = RwRmZdDS1T7YBr6bKw3RAFwLFJH8xuBOKZIOf0uZWJma5z3EGBjt8Y97BXDNSAApaESMPA
   print(token);
   late Widget start;
   if (onBoardingFinish != null) {
@@ -70,7 +71,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => ShopLoginCubit()),
         BlocProvider(
             create: (context) => ShopCubit()
-              ..getHomeData()..getCategories()),
+              ..getHomeData()..getCategories()..getFavorites()..getUserData()),
 
       ],
       child: MaterialApp(

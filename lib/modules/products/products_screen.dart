@@ -6,6 +6,7 @@ import 'package:sssssssshop_app/models/categories_model.dart';
 import 'package:sssssssshop_app/models/shop_app_model.dart';
 import 'package:sssssssshop_app/shared/app_bloc/shop_app_cubit.dart';
 import 'package:sssssssshop_app/shared/app_bloc/shop_app_states.dart';
+import 'package:sssssssshop_app/shared/constants/components.dart';
 import 'package:sssssssshop_app/shared/styles/colors.dart';
 
 class ProductsScreen extends StatelessWidget {
@@ -14,11 +15,17 @@ class ProductsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<ShopCubit, ShopStates>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        if(state is ShopSuccessChangeFavoritesState){
+          if(!state.model!.status!){
+            showToast(msg: state.model!.message);
+          }
+        }
+      },
       builder: (context, state) {
         ShopCubit cubit = ShopCubit.get(context);
         return ConditionalBuilder(
-            condition: cubit.homeModel != null || cubit.categoriesModel != null ,
+            condition: cubit.homeModel != null && cubit.categoriesModel != null ,
             builder: (context) => builderWidget(cubit.homeModel, cubit.categoriesModel),
             fallback: (context) =>
                const Center(child: CircularProgressIndicator()));
@@ -130,62 +137,78 @@ class ProductsScreen extends StatelessWidget {
   }
 
   Widget buildGridProduct({required ProductModel model}) {
-    return Container(
-      color: white,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Stack(
-            alignment: AlignmentDirectional.bottomStart,
+    return BlocConsumer<ShopCubit, ShopStates>(
+      listener: (context, state){},
+      builder: (context, state){
+        ShopCubit cubit = ShopCubit.get(context);
+        return Container(
+          color: white,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image(
-                image: NetworkImage(model.image!),
-                width: double.infinity,
-                height: 200.0,
-              ),
+              Stack(
+                alignment: AlignmentDirectional.bottomStart,
+                children: [
+                  Image(
+                    image: NetworkImage(model.image!),
+                    width: double.infinity,
+                    height: 200.0,
+                  ),
 
-              if(model.discount != 0) Container(
-                padding: const EdgeInsets.symmetric(horizontal: 5.0),
-                color: red,
-                child: const Text('DISCOUNT',  style: TextStyle(color: white, fontSize: 10.0),),
-              )
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(model.name!,
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 2,
-                ),
-                Row(
+                  if(model.discount != 0) Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                    color: red,
+                    child: const Text('DISCOUNT',  style: TextStyle(color: white, fontSize: 10.0),),
+                  )
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('${model.price!} \$',
+                    Text(model.name!,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 2,
-                      style: const TextStyle(fontSize: 12.0, color: defaultColor),
                     ),
-                    const SizedBox(width: 5.0,),
-                    if(model.discount != 0) Text('${model.oldPrice!}',
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 2,
-                      style: const TextStyle(fontSize: 10.0, color: grey, decoration: TextDecoration.lineThrough ),
+                    Row(
+                      children: [
+                        Text('${model.price!} \$',
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 2,
+                          style: const TextStyle(fontSize: 12.0, color: defaultColor),
+                        ),
+                        const SizedBox(width: 5.0,),
+                        if(model.discount != 0) Text('${model.oldPrice!}',
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 2,
+                          style: const TextStyle(fontSize: 10.0, color: grey, decoration: TextDecoration.lineThrough ),
+                        ),
+                        const Spacer(),
+                        CircleAvatar(
+                          backgroundColor: cubit.favorites[model.id]! ? defaultColor: grey,
+                          child: IconButton(
+                              onPressed: (){
+                                ShopCubit.get(context).changeFavorites(model.id);
+                                print(model.id);
+                              }, icon: const Icon(
+                            Icons.favorite_border,
+                            size: 20.0,
+                            color: white,
+                          )),
+                        )
+                      ],
                     ),
-                    const Spacer(),
-                    IconButton(
-                       onPressed: (){}, icon: const Icon(
-                      Icons.favorite_border, size: 20.0,))
+
                   ],
                 ),
+              ),
 
-              ],
-            ),
+            ],
           ),
+        );
+      },
 
-        ],
-      ),
     );
   }
 }
