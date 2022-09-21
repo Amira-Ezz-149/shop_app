@@ -29,7 +29,7 @@ class CacheHelper {
 
 
   ///ده كود ال remove data  فى ال sharedpefrance
-  static Future<bool> removeData(String key) async {
-    return await sharedPreferences!.remove(key);
+  static Future<bool> removeData({String? key}) async {
+    return await sharedPreferences!.remove(key!);
   }
 }

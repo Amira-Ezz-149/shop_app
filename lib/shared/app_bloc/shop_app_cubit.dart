@@ -155,7 +155,7 @@ class ShopCubit extends Cubit<ShopStates> {
       print('===== ************************************************************************ ======');
       print('from get Favorites model the value is ${userModel!.data!.name}');
       print('===== ************************************************************************ ======');
-      emit(ShopSuccessUserDataState());
+      emit(ShopSuccessUserDataState(userModel));
     }).catchError((error) {
       print(error.toString());
       emit(ShopErrorUserDataState());

@@ -30,7 +30,7 @@ void navigateAndFinish(context, Widget widget) => Navigator.pushAndRemoveUntil(
 
 
 
-Widget bottom({
+Widget defaultButton({
   required double width,
   required double height,
   required Color color,
@@ -102,48 +102,42 @@ Widget defulteditTextx({
         fillColor: Colors.grey[200],
       ),
     );
-
-
 Widget defaultFormField({
-  required context,
-  TextEditingController? controller,
-  dynamic label,
-  IconData? prefix,
-  String? initialValue,
-  TextInputType? keyboardType,
-  Function(String)? onSubmit,
-  onChange,
-  onTap,
-  required String? Function(String?) validate,
+  required TextEditingController? controller,
+  required TextInputType? type,
+  void Function(String)? onSubmit,
+  void Function(String)? onChange,
+  void Function()? onTap,
   bool isPassword = false,
-  bool enabled = true,
+  required String? Function(String?)? validate,
+  required String? label,
+  required IconData? prefix,
   IconData? suffix,
-  suffixPressed,
+  void Function()? suffixPressed,
+  bool isClickable = true,
 }) =>
     TextFormField(
       controller: controller,
-      keyboardType: keyboardType,
+      keyboardType: type,
       obscureText: isPassword,
-      textAlign: TextAlign.start,
+      enabled: isClickable,
       onFieldSubmitted: onSubmit,
-      enabled: enabled,
       onChanged: onChange,
       onTap: onTap,
       validator: validate,
-      textCapitalization: TextCapitalization.words,
-      textAlignVertical: TextAlignVertical.center,
-      style: Theme.of(context).textTheme.bodyText1,
-      initialValue: initialValue,
-      //textCapitalization: TextCapitalization.words,
-
       decoration: InputDecoration(
-        hintText: label,
-        border: UnderlineInputBorder(),
+        labelText: label,
         prefixIcon: Icon(
           prefix,
         ),
         suffixIcon: suffix != null
-            ? IconButton(onPressed: suffixPressed, icon: Icon(suffix))
+            ? IconButton(
+          onPressed: suffixPressed,
+          icon: Icon(
+            suffix,
+          ),
+        )
             : null,
+        border: const OutlineInputBorder(),
       ),
     );

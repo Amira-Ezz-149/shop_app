@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:sssssssshop_app/layout/shop_app_layput.dart';
+import 'package:sssssssshop_app/modules/register/register_screen.dart';
 import 'package:sssssssshop_app/shared/constants/components.dart';
 import 'package:sssssssshop_app/shared/constants/constants.dart';
 import 'package:sssssssshop_app/shared/login_bloc/shop_login_cubit.dart';
@@ -13,8 +14,8 @@ import 'package:sssssssshop_app/shared/network/local/cache_helper.dart';
 
 class ShopLoginScreen extends StatelessWidget {
   var emailController = TextEditingController();
-  var PasswordConerolar = TextEditingController();
-  var Formkey = GlobalKey<FormState>();
+  var passwordController = TextEditingController();
+  var formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +35,7 @@ class ShopLoginScreen extends StatelessWidget {
                 key: 'token', value: state.loginModel.data?.token)
                 .then((value) {
               token = state.loginModel.data!.token!;
+              token = state.loginModel.data?.token;
               navigateAndFinish(context, const ShopLayout());
             }).catchError((error) {});
           } else {
@@ -76,7 +78,7 @@ class ShopLoginScreen extends StatelessWidget {
                   const Center(child:  FlutterLogo(size: 200.0)),
                   Center(
                     child: Form(
-                      key: Formkey,
+                      key: formKey,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -99,7 +101,7 @@ class ShopLoginScreen extends StatelessWidget {
                           ),
                           defulteditTextx(
                             Controlar: emailController,
-                            keyboardType: TextInputType.text,
+                            keyboardType: TextInputType.emailAddress,
                             Lable: 'Email Address',
                             prefix: Icons.email,
                             validator: (value) {
@@ -115,8 +117,9 @@ class ShopLoginScreen extends StatelessWidget {
                           const SizedBox(
                             height: 30.0,
                           ),
+                          //TODO change this to defaultformfield which i add to the settings
                           defulteditTextx(
-                            Controlar: PasswordConerolar,
+                            Controlar: passwordController,
                             keyboardType: TextInputType.text,
                             Lable: 'Password',
                             prefix: Icons.lock,
@@ -135,10 +138,10 @@ class ShopLoginScreen extends StatelessWidget {
                               print(value);
                             },
                             onSubmit: (value) {
-                              if (Formkey.currentState!.validate()) {
+                              if (formKey.currentState!.validate()) {
                                 cubit.userLogin(
                                     email: emailController.text,
-                                    password: PasswordConerolar.text);
+                                    password: passwordController.text);
                               }
                             },
                           ),
@@ -147,15 +150,15 @@ class ShopLoginScreen extends StatelessWidget {
                           ),
                           ConditionalBuilder(
                             condition: state is! ShopLoginLoadingState,
-                            builder: (BuildContext context) => bottom(
+                            builder: (BuildContext context) => defaultButton(
                               width: double.infinity,
                               height: 50,
                               color: Colors.deepOrange,
                               onpressed: () {
-                                if (Formkey.currentState!.validate()) {
+                                if (formKey.currentState!.validate()) {
                                   cubit.userLogin(
                                       email: emailController.text,
-                                      password: PasswordConerolar.text);
+                                      password: passwordController.text);
                                 }
                               },
                               text: 'Login',
@@ -175,7 +178,7 @@ class ShopLoginScreen extends StatelessWidget {
                               ),
                               TextButton(
                                 onPressed: () {
-                                  // PushToNextScreen(context, RefisterScreen());
+                                   PushToNextScreen(context, ShopRegisterScreen());
                                 },
                                 child: const Text('Register'),
                               ),

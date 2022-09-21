@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sssssssshop_app/layout/shop_app_layput.dart';
-import 'package:sssssssshop_app/models/categories_model.dart';
 import 'package:sssssssshop_app/modules/login/login.dart';
 import 'package:sssssssshop_app/modules/on_boarding/on_boarding_screen.dart';
 import 'package:sssssssshop_app/shared/app_bloc/shop_app_cubit.dart';
@@ -15,7 +14,13 @@ import 'package:sssssssshop_app/shared/network/remote/dio_helper.dart';
 
 import 'shared/network/local/cache_helper.dart';
 
+/*
+email : amira.ezz@gmail.com
+pass : 123456
 
+email : asmaa11@gmail.com
+pass : 123456
+*/
 Future<void> main() async {
   HttpOverrides.global = MyHttpOverrides();
 
