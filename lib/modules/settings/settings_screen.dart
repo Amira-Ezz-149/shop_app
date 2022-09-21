@@ -69,9 +69,18 @@ class SettingsScreen extends StatelessWidget {
                           height: 50.0,
                           color: defaultColor,
                           onpressed: () {
+
+                          },
+                          text: 'UPDATE'),
+                      const SizedBox(height: 20.0,),
+                      defaultButton(
+                          width: double.infinity,
+                          height: 50.0,
+                          color: defaultColor,
+                          onpressed: () {
                             signOut(context);
                           },
-                          text: 'LOGOUT')
+                          text: 'LOGOUT'),
                     ],
                   ),
                 ),
