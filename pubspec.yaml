@@ -75,6 +75,8 @@ flutter:
     - assets/images/
     - assets/images/on_boarding1.png
     - assets/images/login_logo.png
+    - assets/images/love.png
+    - assets/images/search.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

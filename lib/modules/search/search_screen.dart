@@ -19,7 +19,9 @@ class SearchScreen extends StatelessWidget {
         builder: (context, state) {
           ShopSearchCubit cubit = ShopSearchCubit.get(context);
           return Scaffold(
-            appBar: AppBar(backgroundColor: defaultColor,),
+            appBar: AppBar(backgroundColor: defaultColor, leading: IconButton(onPressed: (){Navigator.pop(context);},
+                color: white,
+                icon: Icon(Icons.arrow_back)),),
             body: Form(
               key: formKey,
               child: Padding(

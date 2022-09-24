@@ -20,13 +20,13 @@ class OnBoardingScreen extends StatelessWidget {
         title: 'Explore',
         body: 'choose the product you want through easy way using Salla app'),
     BoardingModel(
-        image: 'assets/images/on_boarding1.png',
-        title: 'boarding title 2',
-        body: 'boarding body 2'),
+        image: 'assets/images/love.png',
+        title: 'Favorite',
+        body: 'If you love any product to buy it in the future you can save it to the wish list'),
     BoardingModel(
-        image: 'assets/images/on_boarding1.png',
-        title: 'boarding title 3',
-        body: 'boarding body 3'),
+        image: 'assets/images/search.png',
+        title: 'Search',
+        body: 'You can search on any product you want'),
   ];
 
   bool? isLast = false;
