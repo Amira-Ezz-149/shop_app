@@ -32,7 +32,7 @@ class SettingsScreen extends StatelessWidget {
                     key: formKey,
                     child: Column(
                       children: [
-                        if(state is ShopLoadingUpdateUserState) const LinearProgressIndicator(),
+                        if(state is ShopLoadingUpdateUserState) const LinearProgressIndicator(color: defaultColor,),
                         const SizedBox(height: 20.0),
                         defaultFormField(
                           type: TextInputType.text,

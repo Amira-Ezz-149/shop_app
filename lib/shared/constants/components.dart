@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:sssssssshop_app/models/favorites_model.dart';
 import 'package:sssssssshop_app/models/home_model.dart';
+import 'package:sssssssshop_app/shared/app_bloc/shop_app_cubit.dart';
+import 'package:sssssssshop_app/shared/styles/colors.dart';
 
 void PushToNextScreen(context, wight) => Navigator.push(
   context,
@@ -19,7 +22,12 @@ void showToast({msg}) {
       fontSize: 16.0);
 }
 
-
+void navigateTo(context, widget) => Navigator.push(
+  context,
+  MaterialPageRoute(
+    builder: (context) => widget,
+  ),
+);
 
 void navigateAndFinish(context, Widget widget) => Navigator.pushAndRemoveUntil(
   context,
@@ -28,6 +36,75 @@ void navigateAndFinish(context, Widget widget) => Navigator.pushAndRemoveUntil(
 );
 
 
+Widget buildListProduct( model, context, {bool isOldPrice = true}) => Padding(
+  padding: const EdgeInsets.all(20.0),
+  child: SizedBox(
+    height: 120.0,
+    child: Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Stack(
+          alignment: AlignmentDirectional.bottomStart,
+          children: [
+            Image(
+              image: NetworkImage(model!.image!),
+              width: 120.0,
+              height: 120.0,
+            ),
+
+            if(model.discount! != 0 && isOldPrice) Container(
+              padding: const EdgeInsets.symmetric(horizontal: 5.0),
+              color: red,
+              child: const Text('DISCOUNT',  style: TextStyle(color: white, fontSize: 10.0),),
+            )
+          ],
+        ),
+        const SizedBox(width: 20.0),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(model.name!,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 2,
+              ),
+             const Spacer(),
+              Row(
+                children: [
+                  Text('${model.price!}',
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                    style: const TextStyle(fontSize: 12.0, color: defaultColor),
+                  ),
+                  const SizedBox(width: 5.0,),
+                  if(model.discount! != 0 && isOldPrice) Text('${model.oldPrice!}',
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                    style: const TextStyle(fontSize: 10.0, color: grey, decoration: TextDecoration.lineThrough ),
+                  ),
+                  const Spacer(),
+                  CircleAvatar(
+                    backgroundColor: ShopCubit.get(context).favorites[model.id]! ? defaultColor: grey,
+                    child: IconButton(
+                        onPressed: (){
+                          ShopCubit.get(context).changeFavorites(model.id);
+                        }, icon: const Icon(
+                      Icons.favorite_border,
+                      size: 20.0,
+                      color: white,
+                    )),
+                  )
+                ],
+              ),
+
+            ],
+          ),
+        ),
+
+      ],
+    ),
+  ),
+);
 
 
 Widget defaultButton({

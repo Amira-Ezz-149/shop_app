@@ -1,9 +1,9 @@
-abstract class SearchStates {}
+abstract class ShopSearchStates {}
 
-class ShopInitialSearchState extends SearchStates {}
+class ShopInitialSearchState extends ShopSearchStates {}
 
-class ShopLoadingSearchState extends SearchStates {}
+class ShopSearchLoadingState extends ShopSearchStates {}
 
-class ShopSuccessSearchState extends SearchStates {}
+class ShopSearchSuccessState extends ShopSearchStates {}
 
-class ShopErrorSearchState extends SearchStates {}
+class ShopSearchErrorState extends ShopSearchStates {}

@@ -11,6 +11,7 @@ import 'package:sssssssshop_app/shared/constants/constants.dart';
 import 'package:sssssssshop_app/shared/login_bloc/bloc_observer.dart';
 import 'package:sssssssshop_app/shared/login_bloc/shop_login_cubit.dart';
 import 'package:sssssssshop_app/shared/network/remote/dio_helper.dart';
+import 'package:sssssssshop_app/shared/styles/colors.dart';
 
 import 'shared/network/local/cache_helper.dart';
 
@@ -81,7 +82,9 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         theme: ThemeData(
-          primarySwatch: Colors.deepOrange,
+    colorScheme: ColorScheme.fromSwatch().copyWith(onPrimary: defaultColor,
+      primary: defaultColor
+    ),
           scaffoldBackgroundColor: Colors.white,
         ),
         debugShowCheckedModeBanner: false,

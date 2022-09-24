@@ -75,7 +75,8 @@ class ShopLoginScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Center(child:  FlutterLogo(size: 200.0)),
+                  const Center(child:Image(image: AssetImage('assets/images/login_logo.png')),
+                  ),
                   Center(
                     child: Form(
                       key: formKey,

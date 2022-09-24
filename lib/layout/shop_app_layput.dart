@@ -1,8 +1,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sssssssshop_app/modules/search/search_screen.dart';
 import 'package:sssssssshop_app/shared/app_bloc/shop_app_cubit.dart';
 import 'package:sssssssshop_app/shared/app_bloc/shop_app_states.dart';
+import 'package:sssssssshop_app/shared/constants/components.dart';
 import 'package:sssssssshop_app/shared/styles/colors.dart';
 
 class ShopLayout extends StatelessWidget {
@@ -36,7 +38,7 @@ class ShopLayout extends StatelessWidget {
               ),
               IconButton(
                 onPressed: () {
-                  // PushToNextScreen(context, SearchScreen());
+                   navigateTo(context, SearchScreen());
                 },
                 icon: const Icon(Icons.search, color: Colors.black),
               ),                           

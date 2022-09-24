@@ -3,6 +3,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:sssssssshop_app/modules/login/login.dart';
 import 'package:sssssssshop_app/shared/constants/components.dart';
 import 'package:sssssssshop_app/shared/network/local/cache_helper.dart';
+import 'package:sssssssshop_app/shared/styles/colors.dart';
 
 class BoardingModel {
   String? image, title, body;
@@ -16,8 +17,8 @@ class OnBoardingScreen extends StatelessWidget {
   List<BoardingModel> boarding = [
     BoardingModel(
         image: 'assets/images/on_boarding1.png',
-        title: 'boarding title 1',
-        body: 'boarding body 1'),
+        title: 'Explore',
+        body: 'choose the product you want through easy way using Salla app'),
     BoardingModel(
         image: 'assets/images/on_boarding1.png',
         title: 'boarding title 2',
@@ -34,6 +35,8 @@ class OnBoardingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0.0,
         actions: [
           TextButton(
               onPressed: () {
@@ -81,7 +84,7 @@ class OnBoardingScreen extends StatelessWidget {
                   controller: boardingController,
                   count: boarding.length,
                   effect:  const ExpandingDotsEffect(
-                      activeDotColor: Colors.blue,
+                      activeDotColor: defaultColor,
                       dotColor: Colors.grey,
                       dotHeight: 10.0,
                       dotWidth: 10.0,
@@ -90,6 +93,7 @@ class OnBoardingScreen extends StatelessWidget {
                 ),
                 const Spacer(),
                 FloatingActionButton(
+                  backgroundColor: defaultColor,
                   onPressed: () {
                     if (isLast!) {
                       CacheHelper.saveData(key: 'onBoarding', value: true)
@@ -100,7 +104,7 @@ class OnBoardingScreen extends StatelessWidget {
                       });
                     } else {
                       boardingController.nextPage(
-                          duration: Duration(milliseconds: 1000),
+                          duration: const Duration(milliseconds: 1000),
                           curve: Curves.fastLinearToSlowEaseIn);
                     }
                   },
@@ -122,12 +126,12 @@ class OnBoardingScreen extends StatelessWidget {
         const SizedBox(height: 30.0),
         Text(
           '${model.title}',
-          style: const TextStyle(fontSize: 24.0),
+          style: const TextStyle(fontSize: 26.0, fontWeight: FontWeight.w500),
         ),
         const SizedBox(height: 15.0),
         Text(
           '${model.body}',
-          style: const TextStyle(fontSize: 14.0),
+          style: const TextStyle(fontSize: 20.0, color: grey),
         ),
       ],
     );

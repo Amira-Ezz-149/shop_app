@@ -13,7 +13,10 @@ const REGISTER = 'register';
 
 const UPDATE_PROFILE = 'update-profile';
 
-const productssearch = 'products/search';
+const SEARCH = 'products/search';
+
+
+
 
 
 const PRODUCT = 'products/';
