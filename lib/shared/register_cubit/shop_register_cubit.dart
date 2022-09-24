@@ -4,9 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sssssssshop_app/models/login_model.dart';
 import 'package:sssssssshop_app/shared/network/end_points.dart';
-import 'package:sssssssshop_app/shared/login_bloc/shop_login_states.dart';
 import 'package:sssssssshop_app/shared/network/remote/dio_helper.dart';
-import 'package:sssssssshop_app/shared/register_bloc/register_states.dart';
+import 'package:sssssssshop_app/shared/register_cubit/register_states.dart';
 
 class ShopRegisterCubit extends Cubit<ShopRegisterStates> {
   ShopRegisterCubit() : super(ShopRegisterInitialStatus());

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sssssssshop_app/shared/app_bloc/shop_app_cubit.dart';
+import 'package:sssssssshop_app/shared/cubit/shop_app_cubit.dart';
 import 'package:sssssssshop_app/shared/constants/components.dart';
-import 'package:sssssssshop_app/shared/search_bloc/seach_cubit.dart';
-import 'package:sssssssshop_app/shared/search_bloc/search_states.dart';
+import 'package:sssssssshop_app/shared/search_cubit/seach_cubit.dart';
+import 'package:sssssssshop_app/shared/search_cubit/search_states.dart';
 import 'package:sssssssshop_app/shared/styles/colors.dart';
 
 class SearchScreen extends StatelessWidget {
@@ -44,13 +44,7 @@ class SearchScreen extends StatelessWidget {
                     const SizedBox(
                       height: 20.0,
                     ),
-                    if (state is ShopSearchLoadingState)
-                      const LinearProgressIndicator(color: defaultColor,),
-                    
-                    if (state is !ShopSearchLoadingState)
-                      const Text('No product with this name'),
-                    
-                    
+
                     const SizedBox(
                       height: 20.0),
                     if(state is ShopSearchSuccessState)
@@ -65,6 +59,7 @@ class SearchScreen extends StatelessWidget {
                               endIndent: 20.0),
                           itemCount: cubit.model!.data!.data!.length),
                     ),
+
                   ],
                 ),
               ),

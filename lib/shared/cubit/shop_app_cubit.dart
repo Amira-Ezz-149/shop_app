@@ -5,8 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sssssssshop_app/models/categories_model.dart';
 import 'package:sssssssshop_app/models/change_favorites_model.dart';
 import 'package:sssssssshop_app/models/faqs_model.dart';
-import 'package:sssssssshop_app/models/faqs_model.dart';
-import 'package:sssssssshop_app/models/faqs_model.dart';
 import 'package:sssssssshop_app/models/favorites_model.dart';
 import 'package:sssssssshop_app/models/login_model.dart';
 import 'package:sssssssshop_app/models/shop_app_model.dart';
@@ -15,7 +13,7 @@ import 'package:sssssssshop_app/modules/favorites/favorites_screen.dart';
 import 'package:sssssssshop_app/modules/products/products_screen.dart';
 import 'package:sssssssshop_app/modules/settings/settings_screen.dart';
 import 'package:sssssssshop_app/shared/network/end_points.dart';
-import 'package:sssssssshop_app/shared/app_bloc/shop_app_states.dart';
+import 'package:sssssssshop_app/shared/cubit/shop_app_states.dart';
 import 'package:sssssssshop_app/shared/constants/constants.dart';
 import 'package:sssssssshop_app/shared/network/remote/dio_helper.dart';
 

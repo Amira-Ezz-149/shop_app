@@ -7,8 +7,8 @@ import 'package:sssssssshop_app/layout/shop_app_layput.dart';
 import 'package:sssssssshop_app/modules/register/register_screen.dart';
 import 'package:sssssssshop_app/shared/constants/components.dart';
 import 'package:sssssssshop_app/shared/constants/constants.dart';
-import 'package:sssssssshop_app/shared/login_bloc/shop_login_cubit.dart';
-import 'package:sssssssshop_app/shared/login_bloc/shop_login_states.dart';
+import 'package:sssssssshop_app/shared/login_cubit/shop_login_cubit.dart';
+import 'package:sssssssshop_app/shared/login_cubit/shop_login_states.dart';
 import 'package:sssssssshop_app/shared/network/local/cache_helper.dart';
 import 'package:sssssssshop_app/shared/styles/colors.dart';
 

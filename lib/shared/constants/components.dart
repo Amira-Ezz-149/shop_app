@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:sssssssshop_app/shared/app_bloc/shop_app_cubit.dart';
+import 'package:sssssssshop_app/shared/cubit/shop_app_cubit.dart';
 import 'package:sssssssshop_app/shared/styles/colors.dart';
 
 void pushToNextScreen(context, wight) => Navigator.push(

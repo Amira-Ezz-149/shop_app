@@ -2,7 +2,6 @@
 
 import 'package:sssssssshop_app/models/change_favorites_model.dart';
 import 'package:sssssssshop_app/models/login_model.dart';
-import 'package:sssssssshop_app/shared/login_bloc/shop_login_states.dart';
 
 abstract class ShopStates {}
 

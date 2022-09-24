@@ -1,11 +1,9 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sssssssshop_app/models/favorites_model.dart';
-import 'package:sssssssshop_app/shared/app_bloc/shop_app_cubit.dart';
-import 'package:sssssssshop_app/shared/app_bloc/shop_app_states.dart';
+import 'package:sssssssshop_app/shared/cubit/shop_app_cubit.dart';
+import 'package:sssssssshop_app/shared/cubit/shop_app_states.dart';
 import 'package:sssssssshop_app/shared/constants/components.dart';
-import 'package:sssssssshop_app/shared/styles/colors.dart';
 
 class FavoritesScreen extends StatelessWidget {
   const FavoritesScreen({Key? key}) : super(key: key);

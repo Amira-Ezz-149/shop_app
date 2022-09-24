@@ -6,10 +6,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sssssssshop_app/layout/shop_app_layput.dart';
 import 'package:sssssssshop_app/modules/login/login.dart';
 import 'package:sssssssshop_app/modules/on_boarding/on_boarding_screen.dart';
-import 'package:sssssssshop_app/shared/app_bloc/shop_app_cubit.dart';
+import 'package:sssssssshop_app/shared/cubit/shop_app_cubit.dart';
 import 'package:sssssssshop_app/shared/constants/constants.dart';
-import 'package:sssssssshop_app/shared/login_bloc/bloc_observer.dart';
-import 'package:sssssssshop_app/shared/login_bloc/shop_login_cubit.dart';
+import 'package:sssssssshop_app/shared/login_cubit/bloc_observer.dart';
+import 'package:sssssssshop_app/shared/login_cubit/shop_login_cubit.dart';
 import 'package:sssssssshop_app/shared/network/remote/dio_helper.dart';
 import 'package:sssssssshop_app/shared/styles/colors.dart';
 

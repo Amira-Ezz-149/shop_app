@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sssssssshop_app/shared/app_bloc/shop_app_cubit.dart';
-import 'package:sssssssshop_app/shared/app_bloc/shop_app_states.dart';
+import 'package:sssssssshop_app/shared/cubit/shop_app_cubit.dart';
+import 'package:sssssssshop_app/shared/cubit/shop_app_states.dart';
 import 'package:sssssssshop_app/shared/styles/colors.dart';
 
 class FAQSScreen extends StatelessWidget {

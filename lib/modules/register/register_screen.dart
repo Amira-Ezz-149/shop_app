@@ -6,10 +6,9 @@ import 'package:sssssssshop_app/layout/shop_app_layput.dart';
 import 'package:sssssssshop_app/modules/login/login.dart';
 import 'package:sssssssshop_app/shared/constants/components.dart';
 import 'package:sssssssshop_app/shared/constants/constants.dart';
-import 'package:sssssssshop_app/shared/login_bloc/shop_login_cubit.dart';
 import 'package:sssssssshop_app/shared/network/local/cache_helper.dart';
-import 'package:sssssssshop_app/shared/register_bloc/register_cubit.dart';
-import 'package:sssssssshop_app/shared/register_bloc/register_states.dart';
+import 'package:sssssssshop_app/shared/register_cubit/shop_register_cubit.dart';
+import 'package:sssssssshop_app/shared/register_cubit/register_states.dart';
 
 class ShopRegisterScreen extends StatelessWidget {
   TextEditingController nameController = TextEditingController();
