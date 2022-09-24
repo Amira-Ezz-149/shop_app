@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sssssssshop_app/models/categories_model.dart';
 import 'package:sssssssshop_app/models/change_favorites_model.dart';
+import 'package:sssssssshop_app/models/faqs_model.dart';
+import 'package:sssssssshop_app/models/faqs_model.dart';
+import 'package:sssssssshop_app/models/faqs_model.dart';
 import 'package:sssssssshop_app/models/favorites_model.dart';
 import 'package:sssssssshop_app/models/login_model.dart';
 import 'package:sssssssshop_app/models/shop_app_model.dart';
@@ -54,7 +57,7 @@ class ShopCubit extends Cubit<ShopStates> {
         favorites.addAll({element.id : element.infavorites});
       }
       // print('===== *************************** ======');
-       print('from home model the value is ${favorites.toString()}');
+      //  print('from home model the value is ${favorites.toString()}');
 
       emit(ShopSuccessHomeDataState());
     }).catchError((error) {
@@ -74,8 +77,8 @@ class ShopCubit extends Cubit<ShopStates> {
     ).then((value)
     {
       categoriesModel = CategoriesModel.fromJson(value.data);
-      print('===== ********************************** ======');
-      print('from categories model the value is ${value.toString()}');
+      // print('===== ********************************** ======');
+      // print('from categories model the value is ${value.toString()}');
       emit(ShopSuccessCategoriesState());
     }).catchError((error) {
       print(error.toString());
@@ -127,9 +130,9 @@ class ShopCubit extends Cubit<ShopStates> {
     ).then((value)
     {
       favoritesModel = FavoritesModel.fromJson(value.data);
-      print('===== ************************************************************************ ======');
-      print('from get Favorites model the value is ${value.data.toString()}');
-      print('===== ************************************************************************ ======');
+      // print('===== ************************************************************************ ======');
+      // print('from get Favorites model the value is ${value.data.toString()}');
+      // print('===== ************************************************************************ ======');
       emit(ShopSuccessGetFavoritesState());
     }).catchError((error) {
       print(error.toString());
@@ -152,9 +155,9 @@ class ShopCubit extends Cubit<ShopStates> {
     ).then((value)
     {
       userModel = ShopLoginAndSettingsModel.fromJson(value.data);
-      print('===== ************************************************************************ ======');
-      print('from get Favorites model the value is ${userModel!.data!.name}');
-      print('===== ************************************************************************ ======');
+      // print('===== ************************************************************************ ======');
+      // print('from get Favorites model the value is ${userModel!.data!.name}');
+      // print('===== ************************************************************************ ======');
       emit(ShopSuccessUserDataState(userModel));
     }).catchError((error) {
       print(error.toString());
@@ -180,15 +183,39 @@ class ShopCubit extends Cubit<ShopStates> {
         }
     ).then((value) {
       userModel = ShopLoginAndSettingsModel.fromJson(value.data);
-      print(
-          '===== ************************************************************************ ======');
-      print('from put update the value is ${userModel!.data!.name}');
-      print(
-          '===== ************************************************************************ ======');
+      // print(
+      //     '===== ************************************************************************ ======');
+      // print('from put update the value is ${userModel!.data!.name}');
+      // print(
+      //     '===== ************************************************************************ ======');
       emit(ShopSuccessUpdateUserState(userModel));
     }).catchError((error) {
       print(error.toString());
       emit(ShopErrorUpdateUserState());
+    });
+  }
+
+  ///=============================== FAQS model [get] ==========================
+  ///============================================================================
+
+  FAQSModel? faqsModel;
+
+  void getFAQS()
+  {
+    emit(ShopLoadingFAQSState());
+    DioHelper.getData(
+      url: FAQS,
+      token: token,
+    ).then((value)
+    {
+      faqsModel = FAQSModel.fromJson(value.data);
+      print('===== ************************************************************************ ======');
+      print('from get FAQS model the value is ${value.toString()}');
+      print('===== ************************************************************************ ======');
+      emit(ShopSuccessFAQSState());
+    }).catchError((error) {
+      print(error.toString());
+      emit(ShopErrorFAQSState());
     });
   }
 

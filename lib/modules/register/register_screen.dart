@@ -84,10 +84,10 @@ class ShopRegisterScreen extends StatelessWidget {
                               style: TextStyle(color: Colors.grey),
                             ),
                             const SizedBox(height: 40.0),
-                            defulteditTextx(
-                              Controlar: nameController,
+                            defaultTextFormField(
+                              controller: nameController,
                               keyboardType: TextInputType.name,
-                              Lable: 'Name',
+                              label: 'Name',
                               prefix: Icons.person,
                               validator: (value) {
                                 if (value!.isEmpty) {
@@ -100,10 +100,10 @@ class ShopRegisterScreen extends StatelessWidget {
                               },
                             ),
                             const SizedBox(height: 30.0),
-                            defulteditTextx(
-                              Controlar: emailController,
+                            defaultTextFormField(
+                              controller: emailController,
                               keyboardType: TextInputType.emailAddress,
-                              Lable: 'Email Address',
+                              label: 'Email Address',
                               prefix: Icons.email,
                               validator: (value) {
                                 if (value!.isEmpty) {
@@ -116,10 +116,10 @@ class ShopRegisterScreen extends StatelessWidget {
                               },
                             ),
                             const SizedBox(height: 30.0),
-                            defulteditTextx(
-                              Controlar: phoneController,
+                            defaultTextFormField(
+                              controller: phoneController,
                               keyboardType: TextInputType.phone,
-                              Lable: 'Phone',
+                              label: 'Phone',
                               prefix: Icons.phone,
                               validator: (value) {
                                 if (value!.isEmpty) {
@@ -133,12 +133,12 @@ class ShopRegisterScreen extends StatelessWidget {
                             ),
                             const SizedBox(height: 30.0),
                             //TODO change this to defaultformfield which i add to the settings
-                            defulteditTextx(
-                              Controlar: passwordController,
+                            defaultTextFormField(
+                              controller: passwordController,
                               keyboardType: TextInputType.text,
-                              Lable: 'Password',
+                              label: 'Password',
                               prefix: Icons.lock,
-                              sufix: ShopRegisterCubit.get(context).iconData,
+                              suffix: ShopRegisterCubit.get(context).iconData,
                               obscureText: ShopRegisterCubit.get(context).isPassword,
                               suffixPressed: () {
                                 ShopRegisterCubit.get(context)
@@ -186,7 +186,7 @@ class ShopRegisterScreen extends StatelessWidget {
                                 ),
                                 TextButton(
                                   onPressed: () {
-                                    PushToNextScreen(context, ShopLoginScreen());
+                                    pushToNextScreen(context, ShopLoginScreen());
                                   },
                                   child: const Text('LOGIN'),
                                 ),

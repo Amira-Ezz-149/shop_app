@@ -18,15 +18,14 @@ class ShopLayout extends StatelessWidget {
         var cubit = ShopCubit.get(context);
         return Scaffold(
           appBar: AppBar(
-            backgroundColor: Colors.white,
+            backgroundColor: defaultColor,
             elevation: 1.0,
             titleSpacing: 10,
             title: Row(
               children: const [
-               FlutterLogo(),
                 Text(
                   'Salla',
-                  style: TextStyle(color: Colors.black),
+                  style: TextStyle(color: white),
                 ),
               ],
             ),
@@ -34,13 +33,13 @@ class ShopLayout extends StatelessWidget {
               IconButton(
                 onPressed: () {},
                 icon: const Icon(Icons.shopping_cart_outlined,
-                    color: Colors.black),
+                    color: white),
               ),
               IconButton(
                 onPressed: () {
                    navigateTo(context, SearchScreen());
                 },
-                icon: const Icon(Icons.search, color: Colors.black),
+                icon: const Icon(Icons.search, color: white),
               ),                           
             ],
           ),
@@ -53,7 +52,8 @@ class ShopLayout extends StatelessWidget {
             },
             currentIndex: cubit.currentIndex,
             items: const [
-              BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.home), label: 'Home'),
               BottomNavigationBarItem(
                   icon: Icon(Icons.apps), label: 'Categories'),
               BottomNavigationBarItem(

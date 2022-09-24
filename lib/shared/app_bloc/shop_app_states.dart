@@ -63,5 +63,11 @@ class ShopSuccessUpdateUserState extends ShopStates {
 class ShopErrorUpdateUserState extends ShopStates {}
 class ShopLoadingUpdateUserState extends ShopStates {}
 
+///=============== FAQSModel [get] =========================
+class ShopSuccessFAQSState extends ShopStates {}
+class ShopErrorFAQSState extends ShopStates {}
+class ShopLoadingFAQSState extends ShopStates {}
+
+
 
 

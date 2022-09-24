@@ -1,6 +1,7 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sssssssshop_app/modules/FAQs/faqs.dart';
 import 'package:sssssssshop_app/shared/app_bloc/shop_app_cubit.dart';
 import 'package:sssssssshop_app/shared/app_bloc/shop_app_states.dart';
 import 'package:sssssssshop_app/shared/constants/components.dart';
@@ -90,6 +91,9 @@ class SettingsScreen extends StatelessWidget {
                               signOut(context);
                             },
                             text: 'LOGOUT'),
+                        TextButton(onPressed: () {
+                          navigateTo(context, FAQSScreen());
+                        }, child: const Text('FAQS')),
                       ],
                     ),
                   ),

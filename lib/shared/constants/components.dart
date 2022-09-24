@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:sssssssshop_app/models/favorites_model.dart';
-import 'package:sssssssshop_app/models/home_model.dart';
 import 'package:sssssssshop_app/shared/app_bloc/shop_app_cubit.dart';
 import 'package:sssssssshop_app/shared/styles/colors.dart';
 
-void PushToNextScreen(context, wight) => Navigator.push(
+void pushToNextScreen(context, wight) => Navigator.push(
   context,
   MaterialPageRoute(builder: (context) => wight),
 );
@@ -119,7 +117,7 @@ Widget defaultButton({
       height: height,
       decoration: BoxDecoration(
         color: color,
-        borderRadius: BorderRadius.circular(30.0),
+        borderRadius: BorderRadius.circular(5.0),
       ),
       child: MaterialButton(
         onPressed: onpressed,
@@ -135,15 +133,14 @@ Widget defaultButton({
 
 
 
-Widget defulteditTextx({
-  required TextEditingController Controlar,
+Widget defaultTextFormField({
+  required TextEditingController controller,
   required TextInputType keyboardType,
   Function? onfiled,
-  // Function? onchanged ,
   FormFieldValidator<String>? validator,
-  required String Lable,
+  required String label,
   required IconData prefix,
-  IconData? sufix,
+  IconData? suffix,
   suffixPressed,
   bool? obscureText = false,
   Function(String)? onSubmit,
@@ -151,30 +148,26 @@ Widget defulteditTextx({
     TextFormField(
       onFieldSubmitted: onSubmit,
       obscureText: obscureText!,
-      controller: Controlar,
+      controller: controller,
       keyboardType: keyboardType,
-      // onChanged:(s)
-      // {
-      //   onchanged!(s);
-      // } ,
       validator: validator,
-      decoration: InputDecoration(
-        labelStyle: const TextStyle(color: Colors.deepOrange),
-        labelText: Lable,
+      decoration: InputDecoration(hintStyle: const TextStyle(color: Colors.grey),
+        labelStyle: const TextStyle(color: defaultColor),
+        labelText: label,
         border: const OutlineInputBorder(),
         prefixIcon: Icon(
           prefix,
-          color: Colors.deepOrange,
+          color: defaultColor,
         ),
-        suffixIcon: sufix != null
-            ? IconButton(onPressed: suffixPressed, icon: Icon(sufix))
+        suffixIcon: suffix != null
+            ? IconButton(onPressed: suffixPressed, icon: Icon(suffix))
             : null,
         enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(50),
-            borderSide: BorderSide(color: Colors.white)),
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(color: white)),
         focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(50),
-            borderSide: const BorderSide(color: Colors.deepOrange)),
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(color: defaultColor)),
         filled: true,
         fillColor: Colors.grey[200],
       ),
@@ -205,7 +198,7 @@ Widget defaultFormField({
       decoration: InputDecoration(
         labelText: label,
         prefixIcon: Icon(
-          prefix,
+          prefix, color: defaultColor,
         ),
         suffixIcon: suffix != null
             ? IconButton(

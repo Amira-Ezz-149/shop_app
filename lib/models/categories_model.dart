@@ -1,6 +1,7 @@
 class CategoriesModel
 {
   bool? status;
+  /// data is a map in rest api
   CategoriesDataModel? data;
 
   CategoriesModel.fromJson(Map<String, dynamic> json)
